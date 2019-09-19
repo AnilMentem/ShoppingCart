@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FlatList } from "react-native";
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text } from "native-base";
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content,Text, Spinner } from "native-base";
 
 import { connect } from 'react-redux';
 
@@ -22,9 +22,11 @@ class Products extends Component {
         this.props.fetchProducts();
     }
     render() {
-        const { products, navigation } = this.props;
+        const { products, navigation ,loading} = this.props;
         let content;
-        if (Products.length > 0 ) {
+        if (loading) {
+            content = <Spinner style={{marginTop:240}} color='blue' />
+        } else if (Products.length > 0 ) {
             content = <FlatList 
                      data={ products } 
             renderItem={({item}) => <Product addItemsToCart={this.addItemsToCart} item={item}/> }
@@ -60,6 +62,7 @@ class Products extends Component {
 
 const mapStateToProps = (state) => ({
     products : state.ProductReducer.products,
+    loading : state.ProductReducer.loading
 });
 
 export default connect(mapStateToProps, {fetchProducts, addToCart})(Products);

@@ -1,6 +1,7 @@
 import * as Actions from '../Actions/ActionTypes';
 
 const initialState = {
+    loading: true,
     products: []
 };
 
@@ -9,7 +10,8 @@ const initialState = {
         case Actions.FETCH_PRODUCTS:
             return {
                 ...state,
-                products : action.payload
+                products : action.payload,
+                loading : false
             }
         default:
             return state;

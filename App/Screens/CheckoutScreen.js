@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {FlatList} from 'react-native';
+
 import {
   Button,
   Body,
@@ -25,12 +26,9 @@ class Checkout extends Component {
         super(props);
     }
 
-    onPressButton = () => {
-      if (this.validateForm) {
-        this.props.navigation.navigate('Receipt');
-        this.props.emptyCart();
-      }
-      
+    onPressButton = () => {    
+      this.props.navigation.navigate('Receipt');
+      this.props.emptyCart();      
     }
     
     render() {

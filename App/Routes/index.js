@@ -26,7 +26,7 @@ const Route = createStackNavigator(
       }
     },
     {
-      initialRouteName: 'Checkout',
+      initialRouteName: 'Home',
       defaultNavigationOptions: {
         header:null,
       },
